@@ -15,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final todosList = Todo.todoList();
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
           // ----------- form ------------
-          AddNewTaskForm(),
+          AddNewTaskForm(
+            onAddTodoItem:addTodoItem,
+          ),
 
           // ------------ To do list --------
           Expanded(
@@ -57,8 +60,20 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _deleteTodoItem(String id) {
-setState(() {
-  todosList.removeWhere((item) => item.id==id);
+    setState(() {
+      todosList.removeWhere((item) => item.id == id);
+    });
+  }
+  void addTodoItem(String title,String desc ) {
+    setState(() {
+      todosList.add(Todo(id: DateTime
+          .now()
+          .millisecondsSinceEpoch
+          .toString(),
+          title:title ,
+          subTitle:desc ));
+    });
 
-});  }
+  }
+
 }

@@ -4,10 +4,21 @@ import '../../utils/constant/colors.dart';
 import '../../utils/constant/sizes.dart';
 import '../../utils/constant/texts.dart';
 
-class AddNewTaskForm extends StatelessWidget {
+class AddNewTaskForm extends StatefulWidget {
   const AddNewTaskForm({
-    super.key,
+    super.key, required this.onAddTodoItem,
   });
+
+  final Function(String,String) onAddTodoItem;
+
+  @override
+  State<AddNewTaskForm> createState() => _AddNewTaskFormState();
+}
+
+class _AddNewTaskFormState extends State<AddNewTaskForm> {
+  final titleController = TextEditingController();
+  final descController=TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +43,7 @@ class AddNewTaskForm extends StatelessWidget {
 
           // -------------- add new task title ---------
           TextField(
+            controller: titleController,
             decoration: InputDecoration(
               hintText: MyTexts.addNewTaskTitleHint,
               border: OutlineInputBorder(
@@ -46,6 +58,7 @@ class AddNewTaskForm extends StatelessWidget {
 
           // ------------- add new task description -------
           TextField(
+            controller: descController,
             decoration: InputDecoration(
               hintText: MyTexts.addNewTaskDescriptionHint,
               border: OutlineInputBorder(
@@ -62,7 +75,11 @@ class AddNewTaskForm extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                widget.onAddTodoItem(titleController.text,descController.text);
+                titleController.clear();
+                descController.clear();
+              },
               style:ElevatedButton.styleFrom(
                 backgroundColor: MyColors.black,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(MySizes.radius)),
@@ -78,4 +95,7 @@ class AddNewTaskForm extends StatelessWidget {
       ),
     );
   }
+
+
+
 }
