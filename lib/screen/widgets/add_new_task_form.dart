@@ -12,7 +12,7 @@ class AddNewTaskForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(MySizes.margin),
+      margin: EdgeInsets.symmetric(horizontal: MySizes.margin),
       padding: EdgeInsets.all(MySizes.screenPadding),
       decoration: BoxDecoration(
         color: MyColors.white,

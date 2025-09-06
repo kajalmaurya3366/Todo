@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_task/screen/widgets/add_new_task_form.dart';
+import 'package:todo_task/screen/widgets/todo_item.dart';
 import 'package:todo_task/utils/constant/colors.dart';
 import 'package:todo_task/utils/constant/texts.dart';
 
@@ -22,9 +23,23 @@ class HomeScreen extends StatelessWidget {
         children: [
           // ----------- form ------------
           AddNewTaskForm(),
+
+          // ------------ To do list --------
+          Expanded(child: ListView(children: [
+            TodoItem(),
+            TodoItem(),
+            TodoItem(),
+            TodoItem(),
+            TodoItem(),
+            TodoItem(),
+            TodoItem(),
+            TodoItem(),
+            TodoItem(),
+            TodoItem(),
+            TodoItem(),
+          ])),
         ],
       ),
     );
   }
 }
-
