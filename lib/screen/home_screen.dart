@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:todo_task/model/todo.dart';
 import 'package:todo_task/screen/widgets/add_new_task_form.dart';
 import 'package:todo_task/screen/widgets/todo_item.dart';
 import 'package:todo_task/utils/constant/colors.dart';
 import 'package:todo_task/utils/constant/texts.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+   HomeScreen({super.key});
 
+  final todosList = Todo.todoList();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,17 +28,9 @@ class HomeScreen extends StatelessWidget {
 
           // ------------ To do list --------
           Expanded(child: ListView(children: [
-            TodoItem(),
-            TodoItem(),
-            TodoItem(),
-            TodoItem(),
-            TodoItem(),
-            TodoItem(),
-            TodoItem(),
-            TodoItem(),
-            TodoItem(),
-            TodoItem(),
-            TodoItem(),
+            for ( Todo todos in todosList)
+            TodoItem(todo: todos),
+
           ])),
         ],
       ),
